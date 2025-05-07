@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "eslint": "^9.26.0",
+    "express": "^5.1.0",
+    "pg": "^8.15.6",
+    "uuid": "^11.1.0"
+  },
+  "scripts": {
+    "start": "nodemon src/app/index.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "globals": "^16.0.0",
+    "nodemon": "^3.1.10"
+  }
+}

@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS pgtodo;
+
+
+CREATE DATABASE pgtodo;

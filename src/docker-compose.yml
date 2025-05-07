@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: pgtodo
+    volumes:
+      - ./scripts:/scripts
+      - ./scripts/0-create-database.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./scripts/1-create-table.sql:/docker-entrypoint-initdb.d/02-createTable.sql
+
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'root'
+    ports:
+      - "5432:5432"
