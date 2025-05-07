@@ -3,10 +3,15 @@ const db = require('../database/index');
 
 class TaskRepository{
 
-  findAll(){
-    return new Promise ((resolve) => {
-      resolve(tasks)
-    });
+  async findAll(){
+    const  rows   = await db.query(`
+      SELECT title, status_task, describe, user_task
+      FROM tasks
+
+    `);
+
+    return rows;
+
   }
 
   findById(id){
