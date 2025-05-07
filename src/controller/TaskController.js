@@ -11,14 +11,14 @@ class TaskController{
 
   async store(req, res){
 
-    const {title, status, describe } = req.body;
+    const {title, status_task, describe, user_task } = req.body;
 
 
     if(!title){
       return res.sendStatus(400).json('Title is required.');
     }
 
-    const task = await TaskRepository.create({title,status,describe});
+    const task = await TaskRepository.create({title,status_task,describe,user_task});
 
     return res.json(task);
 

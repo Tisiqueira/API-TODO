@@ -8,6 +8,7 @@
 SELECT id,
 title AS "Title activity",
 status_task AS "Status",
+describe,
 user_task AS "User"
 FROM tasks
 ;

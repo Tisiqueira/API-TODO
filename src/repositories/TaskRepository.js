@@ -1,6 +1,5 @@
 let tasks = require('../mock/tasks');
-
-const { v4 } = require('uuid');
+const db = require('../database/index');
 
 class TaskRepository{
 
@@ -19,29 +18,22 @@ class TaskRepository{
     })
   }
 
-  create({
+  async create({
     title,
-    status,
-    describe
+    status_task,
+    describe,
+    user_task
   }){
 
-    return new Promise ((resolve) => {
-      const newTask = {
-        id: v4(),
-        title,
-        status,
-        describe
-      }
+    const row = await db.query(`
+      INSERT INTO tasks(title,status_task, describe,user_task)
+      VALUES($1, $2, $3, $4)
+      RETURNING title, status_task,describe, user_task
 
-      tasks.push(newTask);
+      `, [title, status_task, describe, user_task]);
 
-      resolve(newTask);
-    })
-
-
-
-
-  }
+      return row;
+    }
 
   delete(id){
 
