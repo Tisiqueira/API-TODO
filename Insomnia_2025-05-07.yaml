@@ -1,0 +1,122 @@
+type: collection.insomnia.rest/5.0
+name: ApiToDo
+meta:
+  id: wrk_09c280488f6544e5a85a1a4c94a49ee8
+  created: 1746356964830
+  modified: 1746356964830
+collection:
+  - url: http://localhost:3001/tasks
+    name: GET Tasks
+    meta:
+      id: req_4b2ec0ee540849b5b884951feb2db73c
+      created: 1746356979659
+      modified: 1746646235645
+      isPrivate: false
+      sortKey: -1746356979659
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3001/tasks
+    name: POST Tasks
+    meta:
+      id: req_486e8fd2a50a4b64bb9d397f5ca07393
+      created: 1746357043442
+      modified: 1746643702273
+      isPrivate: false
+      sortKey: -1746357043442
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"title": "Development dashboard",
+        	"status_task": "Not started",
+        	"describe": "Create a dashboard to api ToDo",
+        	"user_task": "Tiago Siqueira"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3001/tasks/d54dbcbe-bb4a-4208-8363-754d5e5f15ea
+    name: DELETE Tasks
+    meta:
+      id: req_df128ee1173745579444b1e4ae5537a5
+      created: 1746359009478
+      modified: 1746646460718
+      isPrivate: false
+      sortKey: -1746038246654
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3001/tasks/9bb1c10f-aade-428e-a940-3b8e16fe3786
+    name: PUT Tasks
+    meta:
+      id: req_8c33b0e1523c48e9b6a68172a3ace4a0
+      created: 1746384638103
+      modified: 1746646250491
+      isPrivate: false
+      sortKey: -1745878880151.5
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"title": "Teste",
+        	"status_task":"FINISH",
+        	"describe": "Create a dashboard to api ToDo",
+        	"user_task": "FABIO SILVA"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_a91652e103ee7ab109d2acdb11a8f260055fe03c
+    created: 1746356964834
+    modified: 1746356964834
+environments:
+  name: Base Environment
+  meta:
+    id: env_a91652e103ee7ab109d2acdb11a8f260055fe03c
+    created: 1746356964833
+    modified: 1746356964833
+    isPrivate: false

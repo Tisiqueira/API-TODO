@@ -1,12 +1,15 @@
-let tasks = require('../mock/tasks');
 const db = require('../database/index');
 
 class TaskRepository{
 
-  async findAll(){
+  async findAll(orderBy = 'ASC'){
+
+    const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
+
     const  rows   = await db.query(`
-      SELECT title, status_task, describe, user_task
+      SELECT title, status_task, describe, user_task, id
       FROM tasks
+      ORDER BY title ${direction}
 
     `);
 
@@ -14,13 +17,17 @@ class TaskRepository{
 
   }
 
-  findById(id){
+  async findById(id){
 
-    return new Promise((resolve) => {
-      resolve(
-        tasks.find((task) => task.id === id)
-      )
-    })
+    const row = await db.query(`
+      SELECT *
+      FROM tasks
+      WHERE id = $1
+
+    `, [id]);
+
+
+    return row;
   }
 
   async create({
@@ -40,43 +47,33 @@ class TaskRepository{
       return row;
     }
 
-  delete(id){
+  async delete(id){
 
-    return new Promise((resolve) => {
+    const row = await db.query(`
+      DELETE
+      FROM tasks
+      WHERE id = $1
 
-      tasks = tasks.filter((task) => task.id !== id);
+    `, [id]);
 
-      resolve();
-
-
-    });
+    return row;
 
   }
 
-  update(id, {
-    title, status, describe
+  async update(id, {
+    title, status_task, describe, user_task
   }){
 
-   return new Promise((resolve) => {
+   const row = await db.query(`
+    UPDATE tasks
+    SET title = $1, status_task = $2, describe = $3, user_task = $4
+    WHERE id = $5
+
+    RETURNING *
 
 
-    tasks = tasks.map((task) => task.id === id ? {
-
-      ...task,
-      title: title?.trim() ? title : task.title,
-      status: status ?? task.status,
-      describe: describe ?? task.describe,
-
-      }
-      :task
-    );
-
-    const updateTasks = tasks.find((task) => task.id === id)
-
-    resolve(updateTasks);
-
-   })
-
+  `, [title, status_task, describe, user_task, id])
+    return row;
   }
 
 }

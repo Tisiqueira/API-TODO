@@ -8,7 +8,6 @@ class TaskController{
     res.json(tasks);
   }
 
-
   async store(req, res){
 
     const {title, status_task, describe, user_task } = req.body;
@@ -27,7 +26,7 @@ class TaskController{
   async update(req, res){
 
     const { id } = req.params;
-    const { title, status, describe} = req.body;
+    const { title, status_task, describe, user_task} = req.body;
 
     //const taskExist = await TaskRepository.findById(id);
 
@@ -40,7 +39,7 @@ class TaskController{
       //return res.status(400).json({error: 'Task not exist.'})
     //}
 
-    const task = await TaskRepository.update(id, { title, status, describe});
+    const task = await TaskRepository.update(id, { title, status_task, describe, user_task});
 
     res.json(task);
 
